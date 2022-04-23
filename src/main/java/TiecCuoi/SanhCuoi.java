@@ -8,7 +8,7 @@ public class SanhCuoi {
     private String maSanh;
     private String tenSanh;
     private String viTriSanh;
-    private int sucChua;
+    private String sucChua;
     private double giaThue;
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -18,7 +18,7 @@ public class SanhCuoi {
         maSanh = "S" + String.format("%03d", getDem());
     }
 
-    public SanhCuoi(String tenSanh, String viTriSanh, int sucChua, double giaThue){
+    public SanhCuoi(String tenSanh, String viTriSanh, String sucChua, double giaThue){
         this.tenSanh = tenSanh;
         this.viTriSanh = viTriSanh;
         this.sucChua = sucChua;
@@ -34,7 +34,7 @@ public class SanhCuoi {
         System.out.printf("Vi tri sanh: ");
         this.viTriSanh = scanner.nextLine();
         System.out.printf("Suc chua cua sanh: ");
-        this.sucChua = scanner.nextInt();
+        this.sucChua = scanner.nextLine();
         System.out.printf("Gia thue cua sanh: ");
         this.giaThue = scanner.nextDouble();
     }
@@ -85,11 +85,11 @@ public class SanhCuoi {
         this.viTriSanh = viTriSanh;
     }
 
-    public int getSucChua() {
+    public String getSucChua() {
         return sucChua;
     }
 
-    public void setSucChua(int sucChua) {
+    public void setSucChua(String sucChua) {
         this.sucChua = sucChua;
     }
 

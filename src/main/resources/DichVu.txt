@@ -1,0 +1,9 @@
+001
+Dịch vụ Karaoke
+1200000
+002
+Dịch vụ trang trí phối cảnh theo yêu cầu
+500000
+003
+Dịch vụ tiếp mời ca sĩ
+2000000

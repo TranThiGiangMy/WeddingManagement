@@ -23,7 +23,7 @@ public class QuanLySanhCuoi {
             while (scanner.hasNextLine()){
                 String tenSanh = scanner.nextLine();
                 String viTriSanh = scanner.nextLine();
-                int sucChua = Integer.valueOf(scanner.nextLine()) ;
+                String sucChua = String.valueOf(scanner.nextLine()) ;
                 int giaThue = Integer.valueOf(scanner.nextLine()) ;
 //                SanhCuoi s = new SanhCuoi()
                 SanhCuoi sc = new SanhCuoi(tenSanh, viTriSanh, sucChua, giaThue);
@@ -37,7 +37,7 @@ public class QuanLySanhCuoi {
 
         List<SanhCuoi> kq = new ArrayList<>();
         for(SanhCuoi s : this.ds) {
-            if (s.getTenSanh().contains(kw) == true || s.getViTriSanh().contains(kw) == true) {
+            if (s.getTenSanh().contains(kw) == true || s.getViTriSanh().contains(kw) == true || s.getSucChua().contains(kw) == true) {
                 kq.add(s);
             }
         }
@@ -45,33 +45,24 @@ public class QuanLySanhCuoi {
             System.out.printf("Khong ton tai sanh chua %s trong danh sach.", kw);
         return kq;
 
+    }
+
+//    public List<SanhCuoi> timKiem(int n){
 //        List<SanhCuoi> kq = new ArrayList<>();
-//        for(SanhCuoi s : this.ds)
-//            if(s.getTenSanh().contains(kw) == true || s.getViTriSanh().contains(kw) == true) {
+//        for(SanhCuoi s: this.ds)
+//            if(s.getSucChua() == n)
 //                kq.add(s);
-//            }
 //
 //        if (kq.size() == 0)
-//            System.out.printf("Khong co Sanh " + kw);
+//            System.out.printf("Không tìm thấy sảnh có sức chứa %s trong danh sách", n);
 //        return kq;
-    }
-
-    public List<SanhCuoi> timKiem(double n){
-        List<SanhCuoi> kq = new ArrayList<>();
-        for(SanhCuoi s: this.ds)
-            if(s.getSucChua() == n)
-                kq.add(s);
-
-        if (kq.size() == 0)
-            System.out.printf("Không tìm thấy sảnh có sức chứa %s trong danh sách", n);
-        return kq;
-    }
+//    }
 
 
     public void xoaSanh(String kw) {
         boolean flag = false;
         for (SanhCuoi s : this.ds)
-            if(s.getTenSanh().contains(kw) == true || s.getViTriSanh().contains(kw) == true) {
+            if(s.getTenSanh().contains(kw) == true || s.getViTriSanh().contains(kw) == true || s.getSucChua().contains(kw) == true) {
                 this.ds.remove(s);
                 flag = true;
                 System.out.println("Xóa thành công!!!");
@@ -82,19 +73,19 @@ public class QuanLySanhCuoi {
             System.out.printf("Không tìm thấy sảnh %s để xóa\n!", kw);
     }
 
-    public void xoaSanh(int n) {
-        boolean flag = false;
-        for (SanhCuoi s : this.ds)
-            if(s.getSucChua() == n) {
-                this.ds.remove(s);
-                flag = true;
-                System.out.println("Xóa thành công!!!");
-                break;
-            }
-
-        if (flag == false)
-            System.out.printf("Không tìm thấy sảnh có sức chứa %s để xóa\n!", n);
-    }
+//    public void xoaSanh(int n) {
+//        boolean flag = false;
+//        for (SanhCuoi s : this.ds)
+//            if(s.getSucChua() == n) {
+//                this.ds.remove(s);
+//                flag = true;
+//                System.out.println("Xóa thành công!!!");
+//                break;
+//            }
+//
+//        if (flag == false)
+//            System.out.printf("Không tìm thấy sảnh có sức chứa %s để xóa\n!", n);
+//    }
 
 
     public List<SanhCuoi> getDs() {
