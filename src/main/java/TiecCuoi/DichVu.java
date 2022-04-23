@@ -1,6 +1,9 @@
 package TiecCuoi;
 
+import java.util.Scanner;
+
 public class DichVu {
+    private static final Scanner scanner = new Scanner(System.in);
     private String maDV;
     private String tenDV;
     private double giaDV;
@@ -12,6 +15,20 @@ public class DichVu {
     }
     public DichVu(){}
 
+    public void nhapDichVu(){
+        System.out.printf("Nhập mã dịch vụ: ");
+        this.maDV = scanner.nextLine();
+        System.out.printf("Nhập tên dịch vụ: ");
+        this.tenDV = scanner.nextLine();
+        System.out.printf("Nhập giá dịch vu: ");
+        this.giaDV = scanner.nextDouble();
+    }
+
+    public void xuatDichVu(){
+        System.out.printf("Mã dịch vụ là: %s\n", this.maDV);
+        System.out.printf("Tên dịch vụ là: %s\n", this.tenDV);
+        System.out.printf("Giá dịch vụ : %s\n", this.giaDV);
+    }
 
     public String getMaDV() {
         return maDV;

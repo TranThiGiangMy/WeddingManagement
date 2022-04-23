@@ -18,7 +18,7 @@ public class QuanLySanhCuoi {
     }
 
     public void docDsSanh() throws FileNotFoundException, ParseException{
-        File f = new File("C:\\Users\\tranm\\IdeaProjects\\BTL\\src\\main\\resources\\SanhCuoi.txt");
+        File f = new File("D:\\BTL\\WeddingRestaurantManagement\\src\\main\\resources\\SanhCuoi.txt");
         try (Scanner scanner = new Scanner(f)) {
             while (scanner.hasNextLine()){
                 String tenSanh = scanner.nextLine();
@@ -32,66 +32,70 @@ public class QuanLySanhCuoi {
         }
     }
 
-//    public SanhCuoi timKiem(int idS){
-//        return this.ds.stream().filter(s -> s.getIdSanh() == idS).findFirst().get();
-////        for(SanhCuoi s : this.ds)
-////            if(s.getIdSanh() == idS)
-////                return s;
-////        return null;
-//    }
-
-
 
     public List<SanhCuoi> timKiem(String kw){
 
-//        return this.ds.stream().filter(s -> s.getMaSanh() == kw || s.getTenSanh().contains(kw) == true ||
-//                s.getViTriSanh().contains(kw) == true).collect(Collectors.toList());
-//
-//        return this.ds.stream().filter(sc -> sc.getTenSanh().contains(kw) == true).collect(Collectors.toList());
-
-//        List<SanhCuoi> kq = new ArrayList<>();
-//        for(SanhCuoi s : this.ds) {
-//            if (s.getTenSanh().contains(kw) == true || s.getViTriSanh().contains(kw) == true) {
-//                kq.add(s);
-//            }
-//        }
-//        if (this.ds == null)
-//            System.out.printf("Khong ton tai sanh chua %s trong danh sach.", kw);
-//        return kq;
-
         List<SanhCuoi> kq = new ArrayList<>();
-        for(SanhCuoi s : this.ds)
-            if(s.getTenSanh().contains(kw) == true || s.getViTriSanh().contains(kw) == true) {
+        for(SanhCuoi s : this.ds) {
+            if (s.getTenSanh().contains(kw) == true || s.getViTriSanh().contains(kw) == true) {
                 kq.add(s);
             }
-
-        if (kq == null)
-            System.out.printf("Khong co Sanh " + kw);
+        }
+        if (kq.size() == 0)
+            System.out.printf("Khong ton tai sanh chua %s trong danh sach.", kw);
         return kq;
+
+//        List<SanhCuoi> kq = new ArrayList<>();
+//        for(SanhCuoi s : this.ds)
+//            if(s.getTenSanh().contains(kw) == true || s.getViTriSanh().contains(kw) == true) {
+//                kq.add(s);
+//            }
+//
+//        if (kq.size() == 0)
+//            System.out.printf("Khong co Sanh " + kw);
+//        return kq;
     }
 
-    public List<SanhCuoi> traCuu(double n){
+    public List<SanhCuoi> timKiem(double n){
         List<SanhCuoi> kq = new ArrayList<>();
         for(SanhCuoi s: this.ds)
             if(s.getSucChua() == n)
                 kq.add(s);
 
-
-        if (kq == null)
-            System.out.println("Khong tim thay");
+        if (kq.size() == 0)
+            System.out.printf("Không tìm thấy sảnh có sức chứa %s trong danh sách", n);
         return kq;
     }
 
-    public void xoaSanh(SanhCuoi s){
-        for(SanhCuoi p: this.ds)
-            if(p == s) {
+
+    public void xoaSanh(String kw) {
+        boolean flag = false;
+        for (SanhCuoi s : this.ds)
+            if(s.getTenSanh().contains(kw) == true || s.getViTriSanh().contains(kw) == true) {
                 this.ds.remove(s);
-                System.out.println("Xóa thành công!");
+                flag = true;
+                System.out.println("Xóa thành công!!!");
                 break;
             }
-        System.out.printf("Khong tim thay sanh %s de xoa\n", s.getTenSanh());
 
+        if (flag == false)
+            System.out.printf("Không tìm thấy sảnh %s để xóa\n!", kw);
     }
+
+    public void xoaSanh(int n) {
+        boolean flag = false;
+        for (SanhCuoi s : this.ds)
+            if(s.getSucChua() == n) {
+                this.ds.remove(s);
+                flag = true;
+                System.out.println("Xóa thành công!!!");
+                break;
+            }
+
+        if (flag == false)
+            System.out.printf("Không tìm thấy sảnh có sức chứa %s để xóa\n!", n);
+    }
+
 
     public List<SanhCuoi> getDs() {
         return ds;
