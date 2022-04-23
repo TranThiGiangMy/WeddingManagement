@@ -6,9 +6,9 @@ public class DichVu {
     private static final Scanner scanner = new Scanner(System.in);
     private String maDV;
     private String tenDV;
-    private double giaDV;
+    private int giaDV;
 
-    public DichVu(String maDV, String tenDV, double giaDV){
+    public DichVu(String maDV, String tenDV, int giaDV){
         this.maDV = maDV;
         this.tenDV = tenDV;
         this.giaDV = giaDV;
@@ -21,7 +21,7 @@ public class DichVu {
         System.out.printf("Nhập tên dịch vụ: ");
         this.tenDV = scanner.nextLine();
         System.out.printf("Nhập giá dịch vu: ");
-        this.giaDV = scanner.nextDouble();
+        this.giaDV = scanner.nextInt();
     }
 
     public void xuatDichVu(){
@@ -46,11 +46,11 @@ public class DichVu {
         this.tenDV = tenDV;
     }
 
-    public double getGiaDV() {
+    public int getGiaDV() {
         return giaDV;
     }
 
-    public void setGiaDV(double giaDV) {
+    public void setGiaDV(int giaDV) {
         this.giaDV = giaDV;
     }
 }

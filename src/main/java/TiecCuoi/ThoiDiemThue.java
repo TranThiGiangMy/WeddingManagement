@@ -1,0 +1,13 @@
+package TiecCuoi;
+
+public enum ThoiDiemThue {
+    SANG_NGAYTHUONG,
+    CHIEU_NGAYTHUONG,
+    TOI_NGAYTHUONG,
+    SANG_CUOITUAN,
+    CHIEU_CUOITUAN,
+    TOI_CUOITUAN,
+    SANG_NGAYLE,
+    CHIEU_NGAYLE,
+    TOI_NGAYLE;
+}

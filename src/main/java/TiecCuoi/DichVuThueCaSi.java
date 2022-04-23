@@ -10,7 +10,7 @@ public class DichVuThueCaSi extends DichVu{
     private int soLuongBai;
     private static final Scanner scanner = new Scanner(System.in);
 
-    public DichVuThueCaSi(String maDV, String tenDV, double giaDV, String maCS, String tenCS, String queQuan, int tuoi, int soLuongBai ){
+    public DichVuThueCaSi(String maDV, String tenDV, int giaDV, String maCS, String tenCS, String queQuan, int tuoi, int soLuongBai ){
         super(maDV, tenDV, giaDV);
         this.maCS = maCS;
         this.tenCS = tenCS;

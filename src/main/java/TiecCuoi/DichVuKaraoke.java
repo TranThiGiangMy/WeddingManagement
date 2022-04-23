@@ -6,7 +6,7 @@ public class DichVuKaraoke extends DichVu{
     private static final Scanner scanner = new Scanner(System.in);
     private String thoiGianThue;
 
-    public DichVuKaraoke(String maDV, String tenDV, double giaDV,String thoiGianThue){
+    public DichVuKaraoke(String maDV, String tenDV, int giaDV,String thoiGianThue){
         super(maDV, tenDV, giaDV);
         this.thoiGianThue = thoiGianThue;
     }
