@@ -51,9 +51,6 @@ public class SanhCuoi {
 
 
 
-//    public SanhCuoi(String maSanh) {
-//
-//    }
     public static int getDem(){
         return dem;
     }

@@ -44,16 +44,6 @@ public class QuanLyDichVu {
 
     }
 
-//    public List<SanhCuoi> timKiem(int n){
-//        List<SanhCuoi> kq = new ArrayList<>();
-//        for(SanhCuoi s: this.ds)
-//            if(s.getSucChua() == n)
-//                kq.add(s);
-//
-//        if (kq.size() == 0)
-//            System.out.printf("Không tìm thấy sảnh có sức chứa %s trong danh sách", n);
-//        return kq;
-//    }
 
 
     public void xoaDV(String kw) {
