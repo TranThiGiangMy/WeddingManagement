@@ -56,7 +56,7 @@ public class QuanLyDichVu {
 //    }
 
 
-    public void xoaSanh(String kw) {
+    public void xoaDV(String kw) {
         boolean flag = false;
         for (DichVu s : this.dv)
             if(s.getTenDV().contains(kw) == true) {

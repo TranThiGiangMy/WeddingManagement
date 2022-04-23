@@ -29,8 +29,14 @@ public class Demo {
         qldv.xuatDV();
 
         System.out.println("DANH SACH TIM KIEM");
-        kqdv  = qldv.timKiemDV("Dịch vụ karaoke");
+        kqdv  = qldv.timKiemDV("Dịch vụ Karaoke");
         kqdv.forEach(s -> s.xuatDichVu());
+        System.out.println("\n");
+
+        qldv.xoaDV("Dịch vụ Karaoke");
+        System.out.println("===DANH SACH DỊCH VỤ SAU KHI XOA===");
+        qldv.xuatDV();
+
 
 
 //        QuanLySanhCuoi ql = new QuanLySanhCuoi();
