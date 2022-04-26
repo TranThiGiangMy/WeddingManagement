@@ -17,8 +17,8 @@ public class BuaTiec {
     private QuanLyThucPham menu = new QuanLyThucPham();
     private QuanLyDichVu dichVu = new QuanLyDichVu();
     private final Scanner s = new Scanner(System.in);
-    private static final SimpleDateFormat F = new SimpleDateFormat("dd/MMM/yyyy", Locale. ENGLISH);
-    private List<SanhCuoi> sanhCuoi = new ArrayList<>();
+    private static final SimpleDateFormat F = new SimpleDateFormat("dd/MM/yyyy", Locale. ENGLISH);
+    private List<SanhCuoi> sanhCuoi = new ArrayList<SanhCuoi>();
     private List<ThucPham> thucAn = new ArrayList<>();
     private List<ThucPham> thucUong = new ArrayList<>();
     private List<DichVu> dv = new ArrayList<>();
@@ -87,14 +87,13 @@ public class BuaTiec {
         System.out.println("Danh sách sảnh");
         Sc.docDsSanh();
         Sc.xuatSanh();
-
-        System.out.println("Nhập  bạn chọn: ");
-        this.sanh = s.nextLine();
     }
 
+
     public void xuatSanhBuaTiec(){
-        System.out.println("Sảnh bạn chọn là: ");
-        sanhCuoi.add((SanhCuoi) Sc.timKiem(sanh));
+        SanhCuoi kq = new SanhCuoi();
+        Sc.timKiem(sanh);
+        kq.xuatSanh();
     }
 
     public void nhapDsThucAnBuaTiec() throws FileNotFoundException {
@@ -102,14 +101,15 @@ public class BuaTiec {
         menu.docDsThucAn();
         menu.xuatThucPham();
 
-        System.out.println("Nhập thức ăn bạn chọn: ");
+        System.out.println("Thức ăn bạn chọn: ");
         this.list = s.nextLine();
-
     }
 
     public void xuatThucAnBuaTiec(){
         System.out.printf("Danh sách thức ăn bạn chọn: ");
-        thucAn.add((ThucPham) menu.timKiem(list));
+        ThucAn kq = new ThucAn();
+        menu.timKiem(list);
+        kq.xuatTp();
     }
 
     public void nhapDsThucUong() throws FileNotFoundException {
@@ -123,7 +123,9 @@ public class BuaTiec {
 
     public void xuatThucUong(){
         System.out.printf("Danh sách thức uống bạn chọn: ");
-        thucUong.add((ThucPham) menu.timKiem(list));
+        ThucUong kq = new ThucUong();
+        menu.timKiem(list);
+        kq.xuatTp();
     }
 
     public void nhapDsDichVu() throws FileNotFoundException {
@@ -133,12 +135,13 @@ public class BuaTiec {
 
         System.out.println("Nhập dịch vụ bạn chọn: ");
         this.list = s.nextLine();
-        dv = dichVu.timKiem(list);
     }
 
     public void xuatDsDichVu(){
         System.out.println("Danh sách dịch vụ bạn chọn: ");
-        dv.add((DichVu) dichVu.timKiem(list));
+        DichVu kq = new DichVu();
+        menu.timKiem(list);
+        kq.xuatDv();
     }
 
     public void nhapNgayThue() throws ParseException {
@@ -147,7 +150,9 @@ public class BuaTiec {
     }
 
     public void xuatNgayThue() throws ParseException {
-        System.out.printf("Ngày thuê: ", F.parse(String.valueOf(ngayThue)));
+        System.out.println("Ngày thuê: ");
+        Date date = new Date();
+        date = F.parse(String.valueOf(ngayThue));
     }
 
 
@@ -167,7 +172,6 @@ public class BuaTiec {
 
     public void xuatBuaTiec() throws ParseException {
         System.out.printf("Tên bữa tiệc là: %s", this.tenBuaTiec);
-        xuatSanhBuaTiec();
         System.out.printf("Thời điểm thuê sảnh là: ", this.thoiDiemThue);
         xuatNgayThue();
         xuatThucAnBuaTiec();

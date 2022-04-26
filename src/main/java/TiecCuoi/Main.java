@@ -40,7 +40,6 @@ public class Main {
 //    }
     public static void main(String[] args) throws ParseException, FileNotFoundException {
         BuaTiec bt = new BuaTiec();
-        QuanLySanhCuoi dssc = new QuanLySanhCuoi();
 
         bt.nhapNgayThue();
         bt.xuatNgayThue();

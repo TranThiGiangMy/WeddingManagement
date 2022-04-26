@@ -23,7 +23,7 @@ public class QuanLyDichVu {
     public void docDsDichVu() throws FileNotFoundException {
         File currDir = new File(".");
         String path = currDir.getAbsolutePath();
-        File f = new File(path + "\\src\\main\\resources\\dichVu.txt");
+        File f = new File(path + "\\src\\main\\resources\\DichVu.txt");
         try (Scanner scanner = new Scanner(f)) {
             while (scanner.hasNextLine()) {
                 String tenDv = scanner.nextLine();

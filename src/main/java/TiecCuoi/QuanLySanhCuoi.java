@@ -18,10 +18,10 @@ public class QuanLySanhCuoi {
     }
 
     public void docDsSanh() throws FileNotFoundException {
-//
-//        File currDir = new File(".");
-//        String path = currDir.getAbsolutePath();
-        File f = new File( "D:\\TiecCuoi\\oop\\src\\main\\resources\\sanhCuoi.txt");
+
+        File currDir = new File(".");
+        String path = currDir.getAbsolutePath();
+        File f = new File( path + "\\src\\main\\resources\\SanhCuoi.txt");
         try (Scanner scanner = new Scanner(f)) {
             while (scanner.hasNextLine()) {
                 String tenS = scanner.nextLine();
@@ -77,9 +77,8 @@ public class QuanLySanhCuoi {
         return kq;
     }
 
-    public List<SanhCuoi> traCuuSanh(){
+    public List<SanhCuoi> traCuuSanh(String tuKhoa){
         List<SanhCuoi> traCuu = new ArrayList<>();
-        String tuKhoa = new String();
 
         System.out.println("Nhâp tên sảnh hoặc vị trí hoặc sức chứa: ");
         tuKhoa = scanner.nextLine();
