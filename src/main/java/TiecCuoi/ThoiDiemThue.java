@@ -1,13 +1,11 @@
-package TiecCuoi;
+package tieccuoi;
 
 public enum ThoiDiemThue {
-    SANG_NGAYTHUONG,
-    CHIEU_NGAYTHUONG,
-    TOI_NGAYTHUONG,
-    SANG_CUOITUAN,
-    CHIEU_CUOITUAN,
-    TOI_CUOITUAN,
-    SANG_NGAYLE,
-    CHIEU_NGAYLE,
-    TOI_NGAYLE;
+    SANG_THUONG,
+    CHIEU_THUONG,
+    TOI_THUONG,
+    SANG_CUOI_TUAN,
+    CHIEU_CUOI_TUAN,
+    TOI_CUOI_TUAN
+
 }

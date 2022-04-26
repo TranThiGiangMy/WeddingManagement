@@ -1,39 +1,35 @@
-package TiecCuoi;
-
-import java.util.Scanner;
+package tieccuoi;
 
 public class DichVuKaraoke extends DichVu{
-    private static final Scanner scanner = new Scanner(System.in);
-    private String thoiGianThue;
+    private int thoiGianThue;
 
-    public DichVuKaraoke(String maDV, String tenDV, int giaDV,String thoiGianThue){
-        super(maDV, tenDV, giaDV);
+    public DichVuKaraoke(String tenDv, String giaDv, int thoiGianThue) {
+        super(tenDv, giaDv);
         this.thoiGianThue = thoiGianThue;
     }
 
     public DichVuKaraoke(){
-
+        super();
     }
 
     @Override
-    public void nhapDichVu() {
-        super.nhapDichVu();
-        System.out.printf("Nhập thời gian sử dụng dịch vụ: ");
-        this.setThoiGianThue(scanner.nextLine());
+    public void xuatDv() {
+        super.xuatDv();
+        System.out.printf("Thời gian thuê: %s\n", this.thoiGianThue);
     }
-
 
     @Override
-    public void xuatDichVu() {
-        super.xuatDichVu();
-        System.out.printf("Thời gian sử dụng dịch vụ là: %s", this.getThoiGianThue());
+    public void nhapDv() {
+        super.nhapDv();
+        System.out.println("Nhập thời gian thuê: ");
+        this.thoiGianThue = s.nextInt();
     }
 
-    public String getThoiGianThue() {
+    public int getThoiGianThue() {
         return thoiGianThue;
     }
 
-    public void setThoiGianThue(String thoiGianThue) {
+    public void setThoiGianThue(int thoiGianThue) {
         this.thoiGianThue = thoiGianThue;
     }
 }

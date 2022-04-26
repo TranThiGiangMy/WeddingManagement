@@ -1,96 +1,88 @@
-package TiecCuoi;
+package tieccuoi;
 
 import java.util.Scanner;
 
-import static java.lang.String.format;
+public class SanhCuoi{
+    private static String tenSanh;
+    private String idSanh;
+    private static int dem = 0;
+    private String viTri;
+    private int sucChua;
+    private static double giaThue = 1000;
+    final Scanner s = new Scanner(System.in);
 
-public class SanhCuoi {
-    private String maSanh;
-    private String tenSanh;
-    private String viTriSanh;
-    private String sucChua;
-    private double giaThue;
-    private static final Scanner scanner = new Scanner(System.in);
-
-    public static int dem = 0;
     {
-        dem++;
-        maSanh = "S" + String.format("%03d", getDem());
+        idSanh = "S" + String.format("%05d", ++dem);
     }
 
-    public SanhCuoi(String tenSanh, String viTriSanh, String sucChua, double giaThue){
-        this.tenSanh = tenSanh;
-        this.viTriSanh = viTriSanh;
-        this.sucChua = sucChua;
-        this.giaThue = giaThue;
-        
+    public SanhCuoi(String tenS, String vt, int nguoiChua){
+        this.setTenSanh(tenS);
+        this.viTri = vt;
+        this.sucChua = nguoiChua;
     }
 
-    public SanhCuoi(){}
+    public SanhCuoi(){
+    }
+
+
 
     public void nhapSanh(){
-        System.out.printf("Nhap ten sanh: ");
-        this.tenSanh = scanner.nextLine();
-        System.out.printf("Vi tri sanh: ");
-        this.viTriSanh = scanner.nextLine();
-        System.out.printf("Suc chua cua sanh: ");
-        this.sucChua = scanner.nextLine();
-        System.out.printf("Gia thue cua sanh: ");
-        this.giaThue = scanner.nextDouble();
+        System.out.printf("Nhập tên sảnh: ");
+        this.setTenSanh(s.nextLine());
+        System.out.printf("Nhập vị trí sảnh: ");
+        this.viTri = s.nextLine();
+        System.out.printf("Nhập sức chứa: ");
+        this.sucChua = s.nextInt();
     }
 
     public void xuatSanh(){
-        System.out.printf("Mã Sảnh: %s\n", this.maSanh);
-        System.out.printf("Tên Sảnh: %s\n", this.tenSanh);
-        System.out.printf("Vị Trí Sảnh: %s\n", this.viTriSanh);
+        System.out.printf("Mã Sảnh: %s\n", this.idSanh);
+        System.out.printf("Tên Sảnh: %s\n", this.getTenSanh());
+        System.out.printf("Vị Trí Sảnh: %s\n", this.viTri);
         System.out.printf("Sức chứa: %d\n", this.sucChua);
-        System.out.printf("Gia thue sanh: %s\n", this.giaThue);
-//        System.out.printf("Ma sanh:%d\nTen sanh:%d\nVi tri sanh:%d\nSuc chua:%d\nGia thue:%d",
-//                this.maSanh, this.tenSanh, this.viTriSanh,this.sucChua,this.giaThue);
     }
 
-
-
-    public static int getDem(){
+    public static int getDem() {
         return dem;
     }
 
-
-
-
-    public String getMaSanh() {
-        return maSanh;
+    public static void setDem(int dem) {
+        SanhCuoi.dem = dem;
     }
 
-    public void setMaSanh(String maSanh) {
-        this.maSanh = maSanh;
-    }
-
-    public String getTenSanh() {
+    public static String getTenSanh() {
         return tenSanh;
     }
 
-    public void setTenSanh(String tenSanh) {
-        this.tenSanh = tenSanh;
+    public static void setTenSanh(String tenSanh) {
+        SanhCuoi.tenSanh = tenSanh;
     }
 
-    public String getViTriSanh() {
-        return viTriSanh;
+    public String getIdSanh() {
+        return idSanh;
     }
 
-    public void setViTriSanh(String viTriSanh) {
-        this.viTriSanh = viTriSanh;
+    public void setIdSanh(String idSanh) {
+        this.idSanh = idSanh;
     }
 
-    public String getSucChua() {
+    public String getViTri() {
+        return viTri;
+    }
+
+    public void setViTri(String viTri) {
+        this.viTri = viTri;
+    }
+
+    public int getSucChua() {
         return sucChua;
     }
 
-    public void setSucChua(String sucChua) {
+    public void setSucChua(int sucChua) {
         this.sucChua = sucChua;
     }
 
-    public double getGiaThue() {
+    public static double getGiaThue() {
         return giaThue;
     }
 

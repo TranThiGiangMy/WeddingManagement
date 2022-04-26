@@ -1,56 +1,61 @@
-package TiecCuoi;
+package tieccuoi;
 
 import java.util.Scanner;
 
 public class DichVu {
-    private static final Scanner scanner = new Scanner(System.in);
-    private String maDV;
-    private String tenDV;
-    private int giaDV;
+    private static int dem=0;
+    private String idDv;
+    private String tenDv;
+    private String giaDv;
+    final Scanner s = new Scanner(System.in);
 
-    public DichVu(String maDV, String tenDV, int giaDV){
-        this.maDV = maDV;
-        this.tenDV = tenDV;
-        this.giaDV = giaDV;
-    }
-    public DichVu(){}
-
-    public void nhapDichVu(){
-        System.out.printf("Nhập mã dịch vụ: ");
-        this.maDV = scanner.nextLine();
-        System.out.printf("Nhập tên dịch vụ: ");
-        this.tenDV = scanner.nextLine();
-        System.out.printf("Nhập giá dịch vu: ");
-        this.giaDV = scanner.nextInt();
+    {
+        idDv = String.format("%05d", ++dem);
     }
 
-    public void xuatDichVu(){
-        System.out.printf("Mã dịch vụ là: %s\n", this.maDV);
-        System.out.printf("Tên dịch vụ là: %s\n", this.tenDV);
-        System.out.printf("Giá dịch vụ : %s\n", this.giaDV);
+    public DichVu(String tenDv, String giaDv) {
+        this.tenDv = tenDv;
+        this.giaDv = giaDv;
     }
 
-    public String getMaDV() {
-        return maDV;
+    public DichVu(){
+
     }
 
-    public void setMaDV(String maDV) {
-        this.maDV = maDV;
+    public void xuatDv(){
+        System.out.printf("Mã dịch vụ: %s\n", this.idDv);
+        System.out.printf("Tên dịch vụ: %s\n", this.tenDv);
+        System.out.printf("Giá dịch vụ: %s\n", this.giaDv);
     }
 
-    public String getTenDV() {
-        return tenDV;
+    public void nhapDv(){
+        System.out.println("Nhập tên dịch vụ: ");
+        this.tenDv = s.nextLine();
+        System.out.println("Nhập giá dịch vụ: ");
+        this.giaDv = s.nextLine();
     }
 
-    public void setTenDV(String tenDV) {
-        this.tenDV = tenDV;
+    public String getIdDv() {
+        return idDv;
     }
 
-    public int getGiaDV() {
-        return giaDV;
+    public void setIdDv(String idDv) {
+        this.idDv = idDv;
     }
 
-    public void setGiaDV(int giaDV) {
-        this.giaDV = giaDV;
+    public String getTenDv() {
+        return tenDv;
+    }
+
+    public void setTenDv(String tenDv) {
+        this.tenDv = tenDv;
+    }
+
+    public String getGiaDv() {
+        return giaDv;
+    }
+
+    public void setGiaDv(String giaDv) {
+        this.giaDv = giaDv;
     }
 }
