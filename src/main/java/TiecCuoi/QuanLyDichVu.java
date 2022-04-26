@@ -1,4 +1,4 @@
-package tieccuoi;
+package TiecCuoi;
 
 import java.io.File;
 import java.io.FileNotFoundException;

@@ -1,4 +1,4 @@
-package tieccuoi;
+package TiecCuoi;
 
 public class DichVuKaraoke extends DichVu{
     private int thoiGianThue;

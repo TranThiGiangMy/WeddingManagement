@@ -1,4 +1,4 @@
-package tieccuoi;
+package TiecCuoi;
 
 public enum ThoiDiemThue {
     SANG_THUONG,

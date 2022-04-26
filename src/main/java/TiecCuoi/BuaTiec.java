@@ -1,4 +1,4 @@
-package tieccuoi;
+package TiecCuoi;
 
 import java.io.FileNotFoundException;
 import java.text.ParseException;
@@ -17,7 +17,7 @@ public class BuaTiec {
     private QuanLyThucPham menu = new QuanLyThucPham();
     private QuanLyDichVu dichVu = new QuanLyDichVu();
     private final Scanner s = new Scanner(System.in);
-    private static final SimpleDateFormat F = new SimpleDateFormat("dd/MM/yyyy");
+    private static final SimpleDateFormat F = new SimpleDateFormat("dd/MMM/yyyy", Locale. ENGLISH);
     private List<SanhCuoi> sanhCuoi = new ArrayList<>();
     private List<ThucPham> thucAn = new ArrayList<>();
     private List<ThucPham> thucUong = new ArrayList<>();
@@ -146,8 +146,8 @@ public class BuaTiec {
         this.ngayThue = F.parse(s.nextLine());
     }
 
-    public void xuatNgayThue(){
-        System.out.printf("Ngày thuê: ", F.format(this.ngayThue));
+    public void xuatNgayThue() throws ParseException {
+        System.out.printf("Ngày thuê: ", F.parse(String.valueOf(ngayThue)));
     }
 
 
@@ -162,13 +162,10 @@ public class BuaTiec {
         nhapDsDichVu();
 
 
-//        this.ngayThue = F.parse(s.nextLine());
-//        System.out.println("Chọn thời gian thuê: ");
-//        this.thoiDiemThue.g
     }
 
 
-    public void xuatBuaTiec(){
+    public void xuatBuaTiec() throws ParseException {
         System.out.printf("Tên bữa tiệc là: %s", this.tenBuaTiec);
         xuatSanhBuaTiec();
         System.out.printf("Thời điểm thuê sảnh là: ", this.thoiDiemThue);

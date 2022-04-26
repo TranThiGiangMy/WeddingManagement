@@ -1,4 +1,4 @@
-package tieccuoi;
+package TiecCuoi;
 
 public class ThucAn extends ThucPham {
     private boolean isChay;

@@ -1,4 +1,4 @@
-package tieccuoi;
+package TiecCuoi;
 
 public class ThucUong extends ThucPham{
     private String nhaSX;

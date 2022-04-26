@@ -1,4 +1,4 @@
-package tieccuoi;
+package TiecCuoi;
 
 public class DichVuCaSi extends DichVu{
     private String tenCaSi;
