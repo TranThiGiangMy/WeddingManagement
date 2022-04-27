@@ -17,7 +17,7 @@ public class BuaTiec {
     private QuanLyThucPham menu = new QuanLyThucPham();
     private QuanLyDichVu dichVu = new QuanLyDichVu();
     private final Scanner s = new Scanner(System.in);
-    private static final SimpleDateFormat F = new SimpleDateFormat("dd/MM/yyyy", Locale. ENGLISH);
+    private static final SimpleDateFormat F = new SimpleDateFormat("dd-MM-yyyy");
     private List<SanhCuoi> sanhCuoi = new ArrayList<SanhCuoi>();
     private List<ThucPham> thucAn = new ArrayList<>();
     private List<ThucPham> thucUong = new ArrayList<>();
@@ -145,16 +145,32 @@ public class BuaTiec {
     }
 
     public void nhapNgayThue() throws ParseException {
-        System.out.println("Nhập ngày muốn thuê: ");
-        this.ngayThue = F.parse(s.nextLine());
+        ngayThue = null;
+        try {
+            System.out.println("Nhập ngày muốn thuê: ");
+            this.ngayThue = F.parse(s.nextLine());
+        }
+        catch (ParseException ex){}
+
     }
 
-    public void xuatNgayThue() throws ParseException {
-        System.out.println("Ngày thuê: ");
-        Date date = new Date();
-        date = F.parse(String.valueOf(ngayThue));
-    }
+    public void xuatNgayThue() {
 
+        System.out.printf("Ngày thuê:" + F.format(ngayThue));
+
+    }
+//
+//    public void xuatThoiDiemThue() throws ParseException {
+//        SimpleDateFormat f = new SimpleDateFormat("dd-MM-yyyy");
+//        Date date = new Date();
+//        String day;
+//        date = null;
+//        day = null;
+//        date = f.parse(String.valueOf(this.ngayThue));
+//        day = F.format(date.getTime());
+//        System.out.println("Ngay thue: ");
+//        if ()
+//    }
 
 
     public void nhapBuaTiec() throws FileNotFoundException, ParseException {
