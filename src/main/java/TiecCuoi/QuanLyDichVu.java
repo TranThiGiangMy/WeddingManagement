@@ -1,4 +1,4 @@
-package TiecCuoi;
+package tieccuoi;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -16,14 +16,14 @@ public class QuanLyDichVu {
         this.getDs().add(dv);
     }
 
-    public void xuatDichVu() {
-        this.ds.forEach(dv -> dv.xuatDv());
+    public void xuatDichVu(List<DichVu> dichVus) {
+        dichVus.forEach(dv -> dv.xuatDv());
     }
 
     public void docDsDichVu() throws FileNotFoundException {
         File currDir = new File(".");
         String path = currDir.getAbsolutePath();
-        File f = new File(path + "\\src\\main\\resources\\DichVu.txt");
+        File f = new File(path + "\\src\\main\\resources\\dichVu.txt");
         try (Scanner scanner = new Scanner(f)) {
             while (scanner.hasNextLine()) {
                 String tenDv = scanner.nextLine();
@@ -50,34 +50,36 @@ public class QuanLyDichVu {
         tempFile.renameTo(oldFile);
     }
 
-    public List<DichVu> timKiem(String tuKhoa) {
+    public List<DichVu> timKiem() {
         List<DichVu> kq = new ArrayList<>();
+        String tuKhoa;
 
-        System.out.println("Nhập tên sảnh hoặc vị trí hoặc sức chứa: ");
+        System.out.println("Nhập tên dịch vụ: ");
         tuKhoa = scanner.nextLine();
         for (DichVu dv : this.ds)
             if (dv.getTenDv().contains(tuKhoa))
                 kq.add(dv);
         if (kq.size() == 0)
-            System.out.println("Không tìm thấy sảnh " + tuKhoa);
+            System.out.println("Không tìm thấy dịch vụ " + tuKhoa);
         return kq;
     }
 
-    public void xoaSanh() {
-        String tenSanhXoa;
+    public void xoaDichVu() {
+        String tenDichVuXoa;
 
         System.out.println("Nhập tên dịch vụ xoá: ");
-        tenSanhXoa = scanner.nextLine();
+        tenDichVuXoa = scanner.nextLine();
         Boolean isDeleted = false;
-        for (DichVu dv : this.ds) {
-            if (dv.getTenDv().contains(tenSanhXoa) == true) {
+        for ( int i = 0;i < this.ds.size(); i ++ ) {
+            DichVu dv = this.ds.get(i);
+            if (dv.getTenDv().contains(tenDichVuXoa) == true) {
                 this.ds.remove(dv);
                 System.out.println("Xóa thành công!");
                 isDeleted = true;
             }
         }
         if (!isDeleted)
-            System.out.printf("Không tìm thấy dịch vụ %s để xóa\n", tenSanhXoa);
+            System.out.printf("Không tìm thấy dịch vụ %s để xóa\n", tenDichVuXoa);
     }
 
     public List<DichVu> getDs() {

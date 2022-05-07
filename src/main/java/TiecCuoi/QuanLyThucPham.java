@@ -1,4 +1,4 @@
-package TiecCuoi;
+package tieccuoi;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,15 +10,16 @@ import java.util.Scanner;
 
 public class QuanLyThucPham {
     private List<ThucPham> ds = new ArrayList<>();
+    final Scanner scanner = new Scanner(System.in);
+
     private double donGiaMenu;
 
     public void themThucPham(ThucPham tp) {
-
-        this.ds.add(tp);
+        this.getDs().add(tp);
     }
 
-    public void xuatThucPham() {
-        this.ds.forEach(tp -> tp.xuatTp());
+    public void xuatThucPham(List<ThucPham> thucPhams) {
+        thucPhams.forEach(tp -> tp.xuatTp());
     }
 
     public void docDsThucAn() throws FileNotFoundException {
@@ -53,19 +54,30 @@ public class QuanLyThucPham {
         }
     }
 
-    public void xoaThucPham(String tenThucPham) {
-        for (ThucPham tp : this.ds)
-            if (tp.getTenTp().contains(tenThucPham)){
+    public void xoaThucPham() {
+        String tenThucPham;
+
+        System.out.println("Nhập tên thực phẩm xoá: ");
+        tenThucPham = scanner.nextLine();
+        Boolean isDeleted = false;
+        for ( int i = 0; i < this.ds.size(); i++ ) {
+            ThucPham tp = this.ds.get(i);
+            if (tp.getTenTp().contains(tenThucPham) == true) {
                 this.ds.remove(tp);
                 System.out.println("Xóa thành công!");
-                break;
-            } else
-                System.out.printf("Không tìm thấy thực phẩm %s để xóa\n", tenThucPham);
+                isDeleted = true;
+            }
+        }
+        if (!isDeleted)
+            System.out.printf("Không tìm thấy thực phẩm %s để xóa\n", tenThucPham);
     }
 
-    public List<ThucPham> timKiem(String tuKhoa) {
+    public List<ThucPham> timKiem() {
         List<ThucPham> kq = new ArrayList<>();
+        String tuKhoa;
 
+        System.out.printf("Nhập tên thực phẩm: ");
+        tuKhoa = scanner.next();
         for (ThucPham tp : this.ds)
             if (tp.getTenTp().contains(tuKhoa) || tp.getGiaTp().contains(tuKhoa))
                 kq.add(tp);
@@ -100,10 +112,10 @@ public class QuanLyThucPham {
         tempFile2.getParentFile().mkdirs();
         FileWriter writer = new FileWriter(tempFile2);
         for (ThucPham tp : this.ds) {
-            if( tp instanceof ThucAn) {
+            if( tp instanceof ThucUong) {
                 writer.write(tp.getTenTp() + "\n");
                 writer.write(tp.getGiaTp() + "\n");
-                writer.write(((ThucAn) tp).isChay()+"\n");
+                writer.write(((ThucUong) tp).getNhaSX()+"\n");
             }
         }
         writer.close();

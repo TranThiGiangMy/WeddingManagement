@@ -1,22 +1,18 @@
-package TiecCuoi;
+package tieccuoi;
 
 import java.util.Scanner;
 
 public class SanhCuoi{
-    private static String tenSanh;
+    private String tenSanh;
     private String idSanh;
     private static int dem = 0;
     private String viTri;
     private int sucChua;
-    private static double giaThue = 1000;
     final Scanner s = new Scanner(System.in);
 
-    {
-        idSanh = "S" + String.format("%05d", ++dem);
-    }
-
     public SanhCuoi(String tenS, String vt, int nguoiChua){
-        this.setTenSanh(tenS);
+        this.idSanh = "S" + String.format("%05d", ++dem);
+        this.tenSanh = tenS;
         this.viTri = vt;
         this.sucChua = nguoiChua;
     }
@@ -24,11 +20,9 @@ public class SanhCuoi{
     public SanhCuoi(){
     }
 
-
-
     public void nhapSanh(){
         System.out.printf("Nhập tên sảnh: ");
-        this.setTenSanh(s.nextLine());
+        this.tenSanh = s.nextLine();
         System.out.printf("Nhập vị trí sảnh: ");
         this.viTri = s.nextLine();
         System.out.printf("Nhập sức chứa: ");
@@ -37,7 +31,7 @@ public class SanhCuoi{
 
     public void xuatSanh(){
         System.out.printf("Mã Sảnh: %s\n", this.idSanh);
-        System.out.printf("Tên Sảnh: %s\n", this.getTenSanh());
+        System.out.printf("Tên Sảnh: %s\n", this.tenSanh);
         System.out.printf("Vị Trí Sảnh: %s\n", this.viTri);
         System.out.printf("Sức chứa: %d\n", this.sucChua);
     }
@@ -50,12 +44,12 @@ public class SanhCuoi{
         SanhCuoi.dem = dem;
     }
 
-    public static String getTenSanh() {
+    public String getTenSanh() {
         return tenSanh;
     }
 
-    public static void setTenSanh(String tenSanh) {
-        SanhCuoi.tenSanh = tenSanh;
+    public void setTenSanh(String tenSanh) {
+        this.tenSanh = tenSanh;
     }
 
     public String getIdSanh() {
@@ -80,13 +74,5 @@ public class SanhCuoi{
 
     public void setSucChua(int sucChua) {
         this.sucChua = sucChua;
-    }
-
-    public static double getGiaThue() {
-        return giaThue;
-    }
-
-    public void setGiaThue(double giaThue) {
-        this.giaThue = giaThue;
     }
 }

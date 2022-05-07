@@ -1,4 +1,4 @@
-package TiecCuoi;
+package tieccuoi;
 
 import java.io.FileNotFoundException;
 import java.text.ParseException;
@@ -6,194 +6,182 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class BuaTiec {
-    String list;
-    String sanh;
     private String tenBuaTiec;
-    private double donGiaThueSanh = 1;
-    private double donGiaThueThueThoiDiem = 1;
+    private SanhCuoi sanhCuoi;
+    private ThoiGianThue thoiGianThue;
     private Date ngayThue;
-    private ThoiDiemThue thoiDiemThue;
-    private QuanLySanhCuoi Sc = new QuanLySanhCuoi();
-    private QuanLyThucPham menu = new QuanLyThucPham();
-    private QuanLyDichVu dichVu = new QuanLyDichVu();
-    private final Scanner s = new Scanner(System.in);
-    private static final SimpleDateFormat F = new SimpleDateFormat("dd-MM-yyyy");
-    private List<SanhCuoi> sanhCuoi = new ArrayList<SanhCuoi>();
-    private List<ThucPham> thucAn = new ArrayList<>();
-    private List<ThucPham> thucUong = new ArrayList<>();
-    private List<DichVu> dv = new ArrayList<>();
+    public static final SimpleDateFormat F = new SimpleDateFormat("dd/MM/yyyy");
+    private List<ThucPham> thucPhams = new ArrayList<>();
+    private List<DichVu> dichVus = new ArrayList<>();
+    final Scanner s = new Scanner(System.in);
 
-    public BuaTiec(String tenBuaTiec, String ngayThue, ThoiDiemThue thoiDiemThue, QuanLySanhCuoi SanhCuoi, QuanLyThucPham menu, QuanLyDichVu dichVu) throws ParseException {
-        this.setTenBuaTiec(tenBuaTiec);
-        this.setNgayThue(getF().parse(ngayThue));
-        this.setThoiDiemThue(thoiDiemThue);
-        this.setSanhCuoi(SanhCuoi);
-        this.setMenu(menu);
-        this.setDichVu(dichVu);
+
+    public BuaTiec(String tenBuaTiec, SanhCuoi sanhCuoi, ThoiGianThue thoiGianThue, Date ngayThue, List<ThucPham> thucPhams, List<DichVu> dichVus) {
+        this.tenBuaTiec = tenBuaTiec;
+        this.sanhCuoi = sanhCuoi;
+        this.setNgayThue(ngayThue);
+        this.thoiGianThue = thoiGianThue;
+        this.thucPhams = thucPhams;
+        this.dichVus = dichVus;
     }
 
-    public BuaTiec(){
-
+    public BuaTiec(String tenBuaTiec, SanhCuoi sanhCuoi, ThoiGianThue thoiGianThue, Date ngayThue) {
+        this.tenBuaTiec = tenBuaTiec;
+        this.sanhCuoi = sanhCuoi;
+        this.thoiGianThue = thoiGianThue;
+        this.ngayThue = ngayThue;
     }
 
-    public static SimpleDateFormat getF() {
-        return F;
-    }
-
-    public double donGiaThueSanh() throws FileNotFoundException {
-//        Sc.docDsSanh();;
-        double gia = 0;
-        double temp;
-        if (SanhCuoi.getTenSanh().contains("thuong"))
-            gia = SanhCuoi.getGiaThue() * 1;
-        else if (SanhCuoi.getTenSanh().contains("VIP"))
-            gia = SanhCuoi.getGiaThue() * 1.5;
-        else if (SanhCuoi.getTenSanh().contains("deluxe"))
-            gia = SanhCuoi.getGiaThue() * 2;
-        else
-            gia = SanhCuoi.getGiaThue() * 1.25;
-
-
-        return gia;
-    }
-
-    public double donGiaThueTheoThoiDiem(){
-        double gia = 0;
-        switch (this.thoiDiemThue) {
-            case SANG_THUONG:
-                gia = SanhCuoi.getGiaThue() * 1.1;
-            case CHIEU_THUONG:
-                gia = SanhCuoi.getGiaThue() * 1.2;
-            case TOI_THUONG:
-                gia = SanhCuoi.getGiaThue() * 1.3;
-            case SANG_CUOI_TUAN:
-                gia = SanhCuoi.getGiaThue() * 1.5;
-            case CHIEU_CUOI_TUAN:
-                gia = SanhCuoi.getGiaThue() * 1.75;
-            case TOI_CUOI_TUAN:
-                gia = SanhCuoi.getGiaThue() *2;
-        }
-
-        return gia;
-
-    }
-//
-//    public void xuatThoiDiemThue(){
-//        for(ThoiDiemThue thoiDiemThue: ThoiDiemThue.values());
-//        System.out.println(thoiDiemThue);
-//    }
-
-    public void nhapSanhBuaTiec() throws FileNotFoundException {
-        System.out.println("Danh sách sảnh");
-        Sc.docDsSanh();
-        Sc.xuatSanh();
-    }
-
-
-    public void xuatSanhBuaTiec(){
-        SanhCuoi kq = new SanhCuoi();
-        Sc.timKiem(sanh);
-        kq.xuatSanh();
-    }
-
-    public void nhapDsThucAnBuaTiec() throws FileNotFoundException {
-        System.out.println("Danh sách thức ăn");
-        menu.docDsThucAn();
-        menu.xuatThucPham();
-
-        System.out.println("Thức ăn bạn chọn: ");
-        this.list = s.nextLine();
-    }
-
-    public void xuatThucAnBuaTiec(){
-        System.out.printf("Danh sách thức ăn bạn chọn: ");
-        ThucAn kq = new ThucAn();
-        menu.timKiem(list);
-        kq.xuatTp();
-    }
-
-    public void nhapDsThucUong() throws FileNotFoundException {
-        System.out.println("Danh sách thức uống");
-        menu.docDsThucUong();
-        menu.xuatThucPham();
-
-        System.out.println("Nhập thức uống bạn chọn: ");
-        this.list = s.nextLine();
-    }
-
-    public void xuatThucUong(){
-        System.out.printf("Danh sách thức uống bạn chọn: ");
-        ThucUong kq = new ThucUong();
-        menu.timKiem(list);
-        kq.xuatTp();
-    }
-
-    public void nhapDsDichVu() throws FileNotFoundException {
-        System.out.println("Danh sách dịch vụ");
-        dichVu.docDsDichVu();
-        dichVu.xuatDichVu();
-
-        System.out.println("Nhập dịch vụ bạn chọn: ");
-        this.list = s.nextLine();
-    }
-
-    public void xuatDsDichVu(){
-        System.out.println("Danh sách dịch vụ bạn chọn: ");
-        DichVu kq = new DichVu();
-        menu.timKiem(list);
-        kq.xuatDv();
-    }
-
-    public void nhapNgayThue() throws ParseException {
-        ngayThue = null;
-        try {
-            System.out.println("Nhập ngày muốn thuê: ");
-            this.ngayThue = F.parse(s.nextLine());
-        }
-        catch (ParseException ex){}
+    public BuaTiec() {
 
     }
 
-    public void xuatNgayThue() {
-
-        System.out.printf("Ngày thuê:" + F.format(ngayThue));
-
+    @Override
+    public String toString() {
+        return this.sanhCuoi.getTenSanh();
     }
-//
-//    public void xuatThoiDiemThue() throws ParseException {
-//        SimpleDateFormat f = new SimpleDateFormat("dd-MM-yyyy");
-//        Date date = new Date();
-//        String day;
-//        date = null;
-//        day = null;
-//        date = f.parse(String.valueOf(this.ngayThue));
-//        day = F.format(date.getTime());
-//        System.out.println("Ngay thue: ");
-//        if ()
-//    }
+
+    public void xuatBuaTiec(){
+        System.out.printf("Tên bữa tiệc: %s\n", this.tenBuaTiec);
+        System.out.printf("Tên sảnh của bữa tiệc: %s\n", this.sanhCuoi.getTenSanh());
+        System.out.printf("Thời điểm thuê: %s\n", this.thoiGianThue.value);
+        System.out.printf("Ngày thuê: %s\n", this.ngayThue);
+    }
 
 
     public void nhapBuaTiec() throws FileNotFoundException, ParseException {
-        System.out.println("Nhập tên bữa tiệc: ");
-        this.setTenBuaTiec(getS().nextLine());
-        nhapSanhBuaTiec();
-        nhapNgayThue();
-        nhapDsThucAnBuaTiec();
-        nhapDsThucUong();
-        nhapDsDichVu();
+        System.out.printf("Nhập tên bữa tiệc: ");
+        this.tenBuaTiec = s.nextLine();
+        System.out.printf("Nhập ngày thuê bữa tiệc: ");
+        this.ngayThue = F.parse(s.nextLine());
 
+        QuanLySanhCuoi quanLySanhCuoi = new QuanLySanhCuoi();
+        quanLySanhCuoi.docDsSanh();
+        for (SanhCuoi ql : quanLySanhCuoi.getDs()) {
+            System.out.println(ql.getIdSanh() + "." + ql.getTenSanh());
+        }
+        do {
+            System.out.printf("Chọn ID sảnh: ");
+            String sanhSelected;
+            sanhSelected = s.nextLine();
+            for (SanhCuoi s : quanLySanhCuoi.getDs()) {
+                if (sanhSelected.equals(s.getIdSanh()))
+                    this.sanhCuoi = s;
+            }
+            if (this.sanhCuoi == null)
+                System.out.println("Mã không hợp lệ rồi! Vui lòng nhập lại nha!");
+        } while (this.sanhCuoi == null);
+        for (ThoiGianThue tgt : ThoiGianThue.values()) {
+            System.out.println(tgt.name() + "." + tgt.value);
+        }
+        do {
+            System.out.printf("Chọn mã thời gian thuê: ");
+            String thoiDiemThue;
+            thoiDiemThue = s.nextLine();
+            for (ThoiGianThue thue : ThoiGianThue.values()) {
+                if (thoiDiemThue.equals(thue.name()))
+                    this.thoiGianThue = thue;
+            }
+            if (this.thoiGianThue == null)
+                System.out.println("Mã không hợp lệ rồi! Vui lòng nhập lại nha!");
+        } while (this.thoiGianThue == null);
+        QuanLyThucPham quanLyThucPham = new QuanLyThucPham();
+        quanLyThucPham.docDsThucAn();
+        quanLyThucPham.docDsThucUong();
+        for (ThucPham tp : quanLyThucPham.getDs()) {
+            System.out.println(tp.getIdTp() + "." + tp.getTenTp());
+        }
+        String luaChon;
+        do {
+            System.out.printf("Chọn thực phẩm cho buổi tiệc (Nhập \"Xong\" để hoàn tất): ");
+            luaChon = s.nextLine();
+            Boolean isValid = false;
+            for (ThucPham tp : quanLyThucPham.getDs()) {
+                if (luaChon.equals(tp.getIdTp())) {
+                    this.thucPhams.add(tp);
+                    System.out.println("Thêm thực phẩm " + tp.getTenTp() + " hoàn tất");
+                    isValid = true;
+                }
+            }
+            if (!isValid && !luaChon.toLowerCase(Locale.ROOT).equals("xong")) {
+                System.out.println("Mã không hợp lệ! Vui lòng chọn lại!");
+            }
+        } while (!luaChon.toLowerCase(Locale.ROOT).equals("xong"));
+        QuanLyDichVu quanLyDichVu = new QuanLyDichVu();
+        quanLyDichVu.docDsDichVu();
+        for (DichVu dv : quanLyDichVu.getDs()) {
+            System.out.println(dv.getIdDv() + "." + dv.getTenDv());
+        }
+        String s1;
+        do {
+            System.out.printf("Chọn thực phẩm cho buổi tiệc (Nhập \"Xong\" để hoàn tất): ");
+            s1 = s.nextLine();
+            Boolean isValid = false;
+            for (DichVu dv : quanLyDichVu.getDs()) {
+                if (s1.equals(dv.getIdDv())) {
+                    this.dichVus.add(dv);
+                    System.out.println("Thêm dịch vụ " + dv.getTenDv() + " hoàn tất");
+                    isValid = true;
+                }
+            }
+            if (!isValid && !s1.toLowerCase(Locale.ROOT).equals("xong")) {
+                System.out.println("Mã không hợp lệ! Vui lòng chọn lại!");
+            }
+        } while (!s1.toLowerCase(Locale.ROOT).equals("xong"));
+    }
+
+    public double tinhGiaTienSanh() {
+        double gia = 10000000;
+        if (this.sanhCuoi.getTenSanh().contains("thường"))
+            gia = gia * 1;
+        if (this.sanhCuoi.getTenSanh().contains("VIP"))
+            gia = gia * 1.2;
+        if (this.sanhCuoi.getTenSanh().contains("deluxe"))
+            gia = gia * 1.5;
+        if (this.sanhCuoi.getTenSanh().contains("private"))
+            gia = gia * 1.7;
+        if (this.thoiGianThue.name().equals("ST"))
+            gia = gia * 1;
+        if (this.thoiGianThue.name().equals("CT"))
+            gia = gia * 1.1;
+        if (this.thoiGianThue.name().equals("TT"))
+            gia = gia * 1.2;
+        if (this.thoiGianThue.name().equals("SCT"))
+            gia = gia * 1.3;
+        if (this.thoiGianThue.name().equals("CCT"))
+            gia = gia * 1.5;
+        if (this.thoiGianThue.name().equals("TCT"))
+            gia = gia * 1.5;
+        for (ThucPham tp : this.thucPhams) {
+            gia += Integer.valueOf(tp.getGiaTp()) * this.sanhCuoi.getSucChua();
+        }
+        for (DichVu dv : this.dichVus) {
+            gia += Integer.valueOf(dv.getGiaDv());
+        }
+        return gia;
+    }
+
+    public void xuatHoaDon() {
+        System.out.println("==HOÁ ĐƠN==");
+        System.out.println("Tên bữa tiệc: " + this.tenBuaTiec);
+        System.out.println("Sảnh bữa tiệc: " + this.sanhCuoi.getTenSanh());
+        System.out.println("Thời điểm thuê bữa tiệc: " + this.thoiGianThue.value);
+        System.out.println("Ngày thuê bữa tiệc: " + this.ngayThue);
+        System.out.println("==DANH SÁCH THỰC PHẨM BẠN ĐÃ CHỌN==");
+        for(ThucPham tp : this.thucPhams){
+            System.out.println(tp.getTenTp());
+            System.out.println(tp.getGiaTp() + "*" + this.sanhCuoi.getSucChua());
+        }
+        System.out.println("==DANH SÁCH DỊCH VỤ BẠN ĐÃ CHỌN==");
+        for(DichVu dv : this.dichVus){
+            System.out.println(dv.getTenDv());
+            System.out.println(dv.getGiaDv());
+        }
+        System.out.println("==THÀNH TIỀN==");
+        System.out.println(String.format("%.2f", this.tinhGiaTienSanh()));
 
     }
 
-
-    public void xuatBuaTiec() throws ParseException {
-        System.out.printf("Tên bữa tiệc là: %s", this.tenBuaTiec);
-        System.out.printf("Thời điểm thuê sảnh là: ", this.thoiDiemThue);
-        xuatNgayThue();
-        xuatThucAnBuaTiec();
-        xuatThucUong();
-        xuatDsDichVu();
-    }
 
 
     public String getTenBuaTiec() {
@@ -204,63 +192,43 @@ public class BuaTiec {
         this.tenBuaTiec = tenBuaTiec;
     }
 
+    public SanhCuoi getSanhCuoi() {
+        return sanhCuoi;
+    }
+
+    public void setSanhCuoi(SanhCuoi sanhCuoi) {
+        this.sanhCuoi = sanhCuoi;
+    }
+
+    public ThoiGianThue getThoiGianThue() {
+        return thoiGianThue;
+    }
+
+    public void setThoiGianThue(ThoiGianThue thoiGianThue) {
+        this.thoiGianThue = thoiGianThue;
+    }
+
+    public List<ThucPham> getThucPhams() {
+        return thucPhams;
+    }
+
+    public void setThucPhams(List<ThucPham> thucPhams) {
+        this.thucPhams = thucPhams;
+    }
+
+    public List<DichVu> getDichVus() {
+        return dichVus;
+    }
+
+    public void setDichVus(List<DichVu> dichVus) {
+        this.dichVus = dichVus;
+    }
+
     public Date getNgayThue() {
         return ngayThue;
     }
 
     public void setNgayThue(Date ngayThue) {
         this.ngayThue = ngayThue;
-    }
-
-    public ThoiDiemThue getThoiDiemThue() {
-        return thoiDiemThue;
-    }
-
-    public void setThoiDiemThue(ThoiDiemThue thoiDiemThue) {
-        this.thoiDiemThue = thoiDiemThue;
-    }
-
-    public QuanLySanhCuoi getSanhCuoi() {
-        return Sc;
-    }
-
-    public void setSanhCuoi(QuanLySanhCuoi sanhCuoi) {
-        Sc = sanhCuoi;
-    }
-
-    public QuanLyThucPham getMenu() {
-        return menu;
-    }
-
-    public void setMenu(QuanLyThucPham menu) {
-        this.menu = menu;
-    }
-
-    public QuanLyDichVu getDichVu() {
-        return dichVu;
-    }
-
-    public void setDichVu(QuanLyDichVu dichVu) {
-        this.dichVu = dichVu;
-    }
-
-    public Scanner getS() {
-        return s;
-    }
-
-    public double getDonGiaThueSanh() {
-        return donGiaThueSanh;
-    }
-
-    public void setDonGiaThueSanh(double donGiaThueSanh) {
-        this.donGiaThueSanh = donGiaThueSanh;
-    }
-
-    public double getDonGiaThueThueThoiDiem() {
-        return donGiaThueThueThoiDiem;
-    }
-
-    public void setDonGiaThueThueThoiDiem(double donGiaThueThueThoiDiem) {
-        this.donGiaThueThueThoiDiem = donGiaThueThueThoiDiem;
     }
 }

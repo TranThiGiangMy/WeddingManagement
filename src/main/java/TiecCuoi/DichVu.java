@@ -1,4 +1,4 @@
-package TiecCuoi;
+package tieccuoi;
 
 import java.util.Scanner;
 

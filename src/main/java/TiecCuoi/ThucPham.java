@@ -1,25 +1,20 @@
-package TiecCuoi;
+package tieccuoi;
 
 import java.util.Scanner;
 
 public abstract class ThucPham {
-    private static int dem = 0;
     private String idTp ;
     private String tenTp;
     private String giaTp;
-    final Scanner scanner = new Scanner(System.in);
-
-
-    {
-        idTp = "F" + String.format("%05d", ++dem);
-    }
+    final Scanner s = new Scanner(System.in);
 
     public ThucPham(String tenTp, String giaTp){
         this.tenTp = tenTp;
         this.giaTp = giaTp;
     }
 
-    public ThucPham(){}
+    public ThucPham(){
+    }
 
     public void xuatTp(){
         System.out.printf("Mã Món: %s\n", this.idTp);
@@ -29,9 +24,9 @@ public abstract class ThucPham {
 
     public void nhapTp(){
         System.out.println("Nhập tên thực phẩm: ");
-        this.tenTp = scanner.nextLine();
+        this.tenTp = s.nextLine();
         System.out.println("Nhập giá thực phẩm: ");
-        this.giaTp = scanner.nextLine();
+        this.giaTp = s.nextLine();
     }
 
     public String getIdTp() {

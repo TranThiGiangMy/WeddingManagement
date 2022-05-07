@@ -28,6 +28,3 @@ Tầng 2 Khu A
 Sảnh private 2
 Tầng 2 Khu A
 300
-Sảnh private 3
-Tầng 2 Khu A
-500

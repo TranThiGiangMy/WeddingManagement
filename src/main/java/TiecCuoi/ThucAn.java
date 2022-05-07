@@ -1,25 +1,30 @@
-package TiecCuoi;
+package tieccuoi;
 
 public class ThucAn extends ThucPham {
+    private static int dem = 0;
     private boolean isChay;
 
     public ThucAn(String tenF, String giaF, boolean chay) {
         super(tenF, giaF);
+        this.setIdTp("F" + String.format("%05d", ++dem));
         this.isChay = chay;
     }
 
-    public ThucAn(){
+    public ThucAn() {
     }
 
     public void xuatTp() {
         super.xuatTp();
-        System.out.printf("Món chay: %s\n", this.isChay);
+        if (!this.isChay)
+            System.out.println("Món mặn");
+        else
+            System.out.println("Món chay");
     }
 
     public void nhapTp() {
         super.nhapTp();
-        System.out.printf("Có phải món chay khum?");
-        this.isChay = scanner.hasNext();
+        System.out.printf("Có phải món chay không?");
+        this.isChay = s.hasNext();
     }
 
     public boolean isChay() {
